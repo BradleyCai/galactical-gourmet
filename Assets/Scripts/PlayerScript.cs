@@ -8,7 +8,7 @@ public class PlayerScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		moveSpeed = 20f;
+		moveSpeed = 100f;
 	}
 	
 	// Update is called once per frame
