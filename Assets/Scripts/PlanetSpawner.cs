@@ -11,6 +11,8 @@ public class PlanetSpawner : MonoBehaviour {
 	private float spawnDistance = 200f;
 	private float scaleLowerRange = 10f;
 	private float scaleUpperRange = 50f;
+    private int planetCount = 0;
+    private int planetLimit = 50;
 
 	// Use this for initialization
 	void Start () {
@@ -19,11 +21,13 @@ public class PlanetSpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		SpawnPlanet();
+        if (planetCount < planetLimit) {
+            SpawnPlanet();
+            planetCount++;
+        }
 	}
 	
 	void SpawnPlanet() {
-		// Vector3 posOffsetAmount = new Vector3(Random.Range(-posOffset, posOffset), Random.Range(-posOffset, posOffset), Random.Range(-posOffset, posOffset));
 		Quaternion spawnDirection = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
 		float size = Random.Range(scaleLowerRange, scaleUpperRange);
 		
