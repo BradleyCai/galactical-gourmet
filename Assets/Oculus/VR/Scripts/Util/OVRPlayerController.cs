@@ -34,7 +34,7 @@ public class OVRPlayerController : MonoBehaviour
 	/// <summary>
 	/// The rate of additional damping when moving sideways or backwards.
 	/// </summary>
-	public float BackAndSideDampen = 0.5f;
+	public float Speed = 0.5f;
 
 	/// <summary>
 	/// The force applied to the character when jumping.
@@ -252,7 +252,7 @@ public class OVRPlayerController : MonoBehaviour
 		float motorDamp = (1.0f + (Damping * SimulationRate * Time.deltaTime));
 
 		MoveThrottle.x /= motorDamp;
-		MoveThrottle.y = (MoveThrottle.y > 0.0f) ? (MoveThrottle.y / motorDamp) : MoveThrottle.y;
+		MoveThrottle.y /= motorDamp;
 		MoveThrottle.z /= motorDamp;
 
 		moveDirection += MoveThrottle * SimulationRate * Time.deltaTime;
@@ -262,16 +262,6 @@ public class OVRPlayerController : MonoBehaviour
 			FallSpeed = ((Physics.gravity.y * (GravityModifier * 0.002f)));
 		else
 			FallSpeed += ((Physics.gravity.y * (GravityModifier * 0.002f)) * SimulationRate * Time.deltaTime);
-
-		moveDirection.y += FallSpeed * SimulationRate * Time.deltaTime;
-
-
-		if (Controller.isGrounded && MoveThrottle.y <= transform.lossyScale.y * 0.001f)
-		{
-			// Offset correction for uneven ground
-			float bumpUpOffset = Mathf.Max(Controller.stepOffset, new Vector3(moveDirection.x, 0, moveDirection.z).magnitude);
-			moveDirection -= bumpUpOffset * Vector3.up;
-		}
 
 		if (PreCharacterMove != null)
 		{
@@ -343,18 +333,15 @@ public class OVRPlayerController : MonoBehaviour
 			Vector3 ortEuler = ort.eulerAngles;
 			ortEuler.z = ortEuler.x = 0f;
 			ort = Quaternion.Euler(ortEuler);
-            Debug.Log(ort);
 
             if (moveForward)
-				MoveThrottle = ort * (5 * Vector3.forward);
+				MoveThrottle += transform.forward * (transform.lossyScale.z * Speed);
 			if (moveBack)
-				MoveThrottle += ort * (transform.lossyScale.z * moveInfluence * BackAndSideDampen * Vector3.back);
-			if (moveLeft)
-				MoveThrottle += ort * (transform.lossyScale.x * moveInfluence * BackAndSideDampen * Vector3.left);
+				MoveThrottle += -transform.forward * (transform.lossyScale.z * Speed);
 			if (moveRight)
-				MoveThrottle += ort * (transform.lossyScale.x * moveInfluence * BackAndSideDampen * Vector3.right);
-
-
+				MoveThrottle += transform.right * (transform.lossyScale.x * Speed);
+			if (moveLeft)
+				MoveThrottle += -transform.right * (transform.lossyScale.x * Speed);
 
 			moveInfluence = Acceleration * 0.1f * MoveScale * MoveScaleMultiplier;
 
@@ -376,14 +363,14 @@ public class OVRPlayerController : MonoBehaviour
 
 			if (primaryAxis.y < 0.0f)
 				MoveThrottle += ort * (Mathf.Abs(primaryAxis.y) * transform.lossyScale.z * moveInfluence *
-									   BackAndSideDampen * Vector3.back);
+									   Speed * Vector3.back);
 
 			if (primaryAxis.x < 0.0f)
 				MoveThrottle += ort * (Mathf.Abs(primaryAxis.x) * transform.lossyScale.x * moveInfluence *
-									   BackAndSideDampen * Vector3.left);
+									   Speed * Vector3.left);
 
 			if (primaryAxis.x > 0.0f)
-				MoveThrottle += ort * (primaryAxis.x * transform.lossyScale.x * moveInfluence * BackAndSideDampen *
+				MoveThrottle += ort * (primaryAxis.x * transform.lossyScale.x * moveInfluence * Speed *
 									   Vector3.right);
 		}
 

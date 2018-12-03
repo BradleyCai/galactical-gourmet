@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlanetSpawner : MonoBehaviour {
-	public GameObject player;
 	public Texture[] textures;
 	public GameObject planetPrefab;
-	public Material planetMaterial;
 
 	private float spawnDistance = 200f;
 	private float scaleLowerRange = 10f;
@@ -16,27 +14,26 @@ public class PlanetSpawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		player = GameObject.Find("Player");
 	}
 	
 	// Update is called once per frame
 	void Update () {
         if (planetCount < planetLimit) {
-            SpawnPlanet();
+            SpawnSpaceObj(planetPrefab);
             planetCount++;
         }
 	}
 	
-	void SpawnPlanet() {
+	void SpawnSpaceObj(GameObject objPrefab) {
 		Quaternion spawnDirection = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
 		float size = Random.Range(scaleLowerRange, scaleUpperRange);
 		
-		GameObject planet = Instantiate(planetPrefab);
-		planet.transform.position = GetPosition(spawnDirection, player.transform.position, spawnDistance);
-		planet.transform.rotation = new Quaternion(0, 0, 0, 1);
-		planet.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
-		planet.transform.localScale = new Vector3(size, size, size);
-		planet.GetComponent<Renderer>().material.mainTexture = textures[Random.Range(0, textures.Length)];
+		GameObject spaceObj = Instantiate(objPrefab);
+		spaceObj.transform.position = GetPosition(spawnDirection, transform.position, spawnDistance);
+		spaceObj.transform.rotation = new Quaternion(0, 0, 0, 1);
+		spaceObj.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+		spaceObj.transform.localScale = new Vector3(size, size, size);
+		spaceObj.GetComponent<Renderer>().material.mainTexture = textures[Random.Range(0, textures.Length)];
 	}
 	
 	Vector3 GetPosition(Quaternion rotation, Vector3 position, float distance) {
