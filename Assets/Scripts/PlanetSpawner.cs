@@ -15,7 +15,7 @@ public class PlanetSpawner : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		planetCount = ConsumePlanet.planetCount; // initiallize planetCount
+		planetCount = ConsumePlanet.planetCount; // initiallize planetCount to 0
 	}
 	
 	// Update is called once per frame
