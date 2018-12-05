@@ -7,10 +7,11 @@ public class PlanetSpawner : MonoBehaviour {
 	public Texture[] textures;
 	public GameObject planetPrefab;
     public int planetLimit;
-	public int planetSpeed;
-	public int planetSpeedVariance;
+	public float planetSpeed;
+	public float planetSpeedVariance;
+	public float spawnDistance;
+	public float spawnDistanceVariance;
 
-	private float spawnDistance = 200f;
 	private float scaleLowerRange = 10f;
 	private float scaleUpperRange = 50f;
 
@@ -30,7 +31,8 @@ public class PlanetSpawner : MonoBehaviour {
 		Vector3 velocity;
 		
 		GameObject spaceObj = Instantiate(objPrefab);
-		spaceObj.transform.position = GetPosition(spawnDirection, transform.position, spawnDistance);
+		spaceObj.transform.position = GetPosition(
+			spawnDirection, transform.position, spawnDistance + Random.Range(-spawnDistanceVariance, spawnDistanceVariance));
 		spaceObj.transform.rotation = new Quaternion(0, 0, 0, 1);
 		velocity = -Vector3.Normalize(spaceObj.transform.position) * planetSpeed;
 		velocity.x += Random.Range(-planetSpeedVariance, planetSpeedVariance);
