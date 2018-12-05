@@ -152,6 +152,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114654569694666730, guid: 5be99746f2e368b4e8ed91d4e93bc9a2,
+        type: 2}
+      propertyPath: planetLimit
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5be99746f2e368b4e8ed91d4e93bc9a2, type: 2}
   m_IsPrefabAsset: 0

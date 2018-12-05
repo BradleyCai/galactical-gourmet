@@ -9,18 +9,19 @@ public class PlanetSpawner : MonoBehaviour {
 	private float spawnDistance = 200f;
 	private float scaleLowerRange = 10f;
 	private float scaleUpperRange = 50f;
-    private int planetCount = 0;
-    private int planetLimit = 50;
+
+    public int planetLimit; // set this value inside unity UI
 
 	// Use this for initialization
 	void Start () {
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (planetCount < planetLimit) {
+        if (ConsumePlanet.planetCount < planetLimit) {
             SpawnSpaceObj(planetPrefab);
-            planetCount++;
+            ConsumePlanet.planetCount++;
         }
 	}
 	
