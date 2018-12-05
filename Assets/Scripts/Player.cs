@@ -3,23 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
+	public GameObject scoreText;
 	private MouseLook mouseLook;
 
 	void Start () {
 		mouseLook = GetComponent<MouseLook>();
 		mouseLook.enabled = false;
+		scoreText.SetActive(false);
 	}
 	
 	void Update () {
-
 		/** 
-			NOT TO BE PART OF FINAL PROJECT
+			DEBUG CODES
 
-			The "M" key is currently set to toggle mouse control on
-			or off. It's used to debug the game without a vr headset.
+			Key "M":
+				Toggles mouse camera movement
+			Key "T":
+				Toggles score text display
 		**/
 		if (Input.GetKeyDown(KeyCode.M)) {
 			mouseLook.enabled = !mouseLook.enabled;
+		}
+		else if (Input.GetKeyDown(KeyCode.T)) {
+			scoreText.SetActive(!scoreText.activeSelf);
 		}
 	}
 }
