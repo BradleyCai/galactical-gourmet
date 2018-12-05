@@ -295,9 +295,24 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114074228019407610, guid: 9ed21967afa54c04483c4a84b3b95dfa,
+        type: 2}
+      propertyPath: planetLimit
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114074228019407610, guid: 9ed21967afa54c04483c4a84b3b95dfa,
+        type: 2}
+      propertyPath: playerSize
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ed21967afa54c04483c4a84b3b95dfa, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &675700317 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1607572326587698, guid: f9f98837e695289499038735f868112a,
+    type: 2}
+  m_PrefabInternal: {fileID: 1143595133}
 --- !u!1 &855434402
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,6 +595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcd04ce9fc1d17c42b47992af65f6fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreText: {fileID: 675700317}
 --- !u!114 &2068098441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -660,13 +676,16 @@ MonoBehaviour:
   - {fileID: 2800000, guid: bbb284679c4e2bb49beaa4d06edbf9cf, type: 3}
   planetPrefab: {fileID: 1492861683432970, guid: 3e9c5a22a49c44549abf0b16241ecf67,
     type: 2}
-  planetLimit: 50
-  spawnSpeed: 300
+  startSpawnCount: 20
+  startSpawnCountVariance: 0
+  spawnSpeed: 0
   spawnSpeedVariance: 0
-  spawnDirectionVariance: 20
-  spawnDistance: 200
+  spawnDirectionVariance: 0
+  spawnDistance: 500
   spawnDistanceVariance: 100
-  spawnSize: 50
-  spawnSizeVariance: 40
-  spawnCooldown: 0.4
-  spawnCooldownVariance: 0.2
+  sizeIsPlayerBased: 0
+  spawnSize: 100
+  spawnSizeVariance: 30
+  infiniteCooldown: 1
+  spawnCooldown: 0
+  spawnCooldownVariance: 0
