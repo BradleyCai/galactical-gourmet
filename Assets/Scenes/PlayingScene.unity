@@ -322,6 +322,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 14300000, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400010, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11462408, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
   m_IsPrefabParent: 0
@@ -540,9 +552,12 @@ MonoBehaviour:
   planetPrefab: {fileID: 1492861683432970, guid: 3e9c5a22a49c44549abf0b16241ecf67,
     type: 2}
   planetLimit: 50
-  spawnSpeed: 50
-  spawnSpeedVariance: 5
+  spawnSpeed: 75
+  spawnSpeedVariance: 0
+  spawnDirectionVariance: 20
   spawnDistance: 200
   spawnDistanceVariance: 100
   spawnSize: 50
   spawnSizeVariance: 40
+  spawnCooldown: 2
+  spawnCooldownVariance: 0.2
