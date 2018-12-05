@@ -544,3 +544,5 @@ MonoBehaviour:
   planetSpeedVariance: 10
   spawnDistance: 200
   spawnDistanceVariance: 100
+  planetSize: 50
+  planetSizeVariance: 40

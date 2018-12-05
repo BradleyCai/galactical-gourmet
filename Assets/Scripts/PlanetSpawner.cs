@@ -11,9 +11,8 @@ public class PlanetSpawner : MonoBehaviour {
 	public float planetSpeedVariance;
 	public float spawnDistance;
 	public float spawnDistanceVariance;
-
-	private float scaleLowerRange = 10f;
-	private float scaleUpperRange = 50f;
+	public float planetSize;
+	public float planetSizeVariance;
 
 	void Start () {
 	}
@@ -26,8 +25,8 @@ public class PlanetSpawner : MonoBehaviour {
 	}
 	
 	void SpawnSpaceObj(GameObject objPrefab) {
+		float size = planetSize + Random.Range(-planetSizeVariance, planetSizeVariance);
 		Quaternion spawnDirection = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
-		float size = Random.Range(scaleLowerRange, scaleUpperRange);
 		Vector3 velocity;
 		
 		GameObject spaceObj = Instantiate(objPrefab);
