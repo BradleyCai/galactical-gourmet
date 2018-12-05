@@ -123,8 +123,8 @@ GameObject:
   - component: {fileID: 32654598}
   - component: {fileID: 32654601}
   - component: {fileID: 32654600}
-  - component: {fileID: 32654599}
   - component: {fileID: 32654602}
+  - component: {fileID: 32654599}
   m_Layer: 0
   m_Name: DespawnField
   m_TagString: Untagged
@@ -156,6 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd7c8e169799e364e9ddf6eb6d357774, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameData: {fileID: 1701888630}
 --- !u!135 &32654600
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -424,11 +425,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 14300000, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
       propertyPath: m_Enabled

@@ -49,7 +49,7 @@ public class PlanetSpawner : MonoBehaviour {
 			spawnDirection, transform.position, varyValue(spawnDistance, spawnDistanceVariance));
 		spaceObj.transform.rotation = new Quaternion(0, 0, 0, 1);
 		if (!stationary) {
-			velocity = -Vector3.Normalize(spaceObj.transform.position) * spawnSpeed;
+			velocity = -Vector3.Normalize(spaceObj.transform.position - transform.position) * spawnSpeed;
 			velocity.x += Random.Range(-spawnDirectionVariance, spawnSpeedVariance);
 			velocity.y += Random.Range(-spawnDirectionVariance, spawnSpeedVariance);
 			velocity.z += Random.Range(-spawnDirectionVariance, spawnSpeedVariance);
