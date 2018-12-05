@@ -17,8 +17,7 @@ public class ScoreDisplay : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Debug.Log(ConsumePlanet.playerScore);
-		string input = "Score: " + ConsumePlanet.playerScore;
-		scoreText.GetComponent<TextMesh>().text = input;
+		scoreText.GetComponent<TextMesh>().text = "Score: " + ConsumePlanet.playerScore;
 	}
 	
 }

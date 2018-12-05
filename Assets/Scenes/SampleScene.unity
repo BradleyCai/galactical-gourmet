@@ -590,7 +590,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: e2e9e725a235af74aa3df83f8ecec69e, type: 3}
   planetPrefab: {fileID: 1680218917131722, guid: 2a8ee54939efa4446a98e6bff8937797,
     type: 2}
-  planetLimit: 2
+  planetLimit: 50
 --- !u!4 &1237282769
 Transform:
   m_ObjectHideFlags: 0
