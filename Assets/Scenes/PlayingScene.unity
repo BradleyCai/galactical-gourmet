@@ -540,9 +540,9 @@ MonoBehaviour:
   planetPrefab: {fileID: 1492861683432970, guid: 3e9c5a22a49c44549abf0b16241ecf67,
     type: 2}
   planetLimit: 50
-  planetSpeed: 50
-  planetSpeedVariance: 10
+  spawnSpeed: 50
+  spawnSpeedVariance: 5
   spawnDistance: 200
   spawnDistanceVariance: 100
-  planetSize: 50
-  planetSizeVariance: 40
+  spawnSize: 50
+  spawnSizeVariance: 40

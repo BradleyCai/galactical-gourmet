@@ -7,12 +7,12 @@ public class PlanetSpawner : MonoBehaviour {
 	public Texture[] textures;
 	public GameObject planetPrefab;
     public int planetLimit;
-	public float planetSpeed;
-	public float planetSpeedVariance;
+	public float spawnSpeed;
+	public float spawnSpeedVariance;
 	public float spawnDistance;
 	public float spawnDistanceVariance;
-	public float planetSize;
-	public float planetSizeVariance;
+	public float spawnSize;
+	public float spawnSizeVariance;
 
 	void Start () {
 	}
@@ -25,7 +25,7 @@ public class PlanetSpawner : MonoBehaviour {
 	}
 	
 	void SpawnSpaceObj(GameObject objPrefab) {
-		float size = planetSize + Random.Range(-planetSizeVariance, planetSizeVariance);
+		float size = spawnSize + Random.Range(-spawnSizeVariance, spawnSizeVariance);
 		Quaternion spawnDirection = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
 		Vector3 velocity;
 		
@@ -33,10 +33,10 @@ public class PlanetSpawner : MonoBehaviour {
 		spaceObj.transform.position = GetPosition(
 			spawnDirection, transform.position, spawnDistance + Random.Range(-spawnDistanceVariance, spawnDistanceVariance));
 		spaceObj.transform.rotation = new Quaternion(0, 0, 0, 1);
-		velocity = -Vector3.Normalize(spaceObj.transform.position) * planetSpeed;
-		velocity.x += Random.Range(-planetSpeedVariance, planetSpeedVariance);
-		velocity.y += Random.Range(-planetSpeedVariance, planetSpeedVariance);
-		velocity.z += Random.Range(-planetSpeedVariance, planetSpeedVariance);
+		velocity = -Vector3.Normalize(spaceObj.transform.position) * spawnSpeed;
+		velocity.x += Random.Range(-spawnSpeedVariance, spawnSpeedVariance);
+		velocity.y += Random.Range(-spawnSpeedVariance, spawnSpeedVariance);
+		velocity.z += Random.Range(-spawnSpeedVariance, spawnSpeedVariance);
 		spaceObj.GetComponent<Rigidbody>().velocity = velocity;
 		spaceObj.transform.localScale = new Vector3(size, size, size);
 		spaceObj.GetComponent<Renderer>().material.mainTexture = textures[Random.Range(0, textures.Length)];
