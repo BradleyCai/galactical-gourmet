@@ -372,20 +372,10 @@ public class OVRPlayerController : MonoBehaviour
 			}
 
             Debug.Log(primaryAxis);
-			if (primaryAxis.y > 0.0f)
-				MoveThrottle += playerCamera.transform.forward * (primaryAxis.y * transform.lossyScale.z * Speed);
-
-			if (primaryAxis.y < 0.0f)
-				MoveThrottle += ort * (Mathf.Abs(primaryAxis.y) * transform.lossyScale.z * moveInfluence *
-									   Speed * Vector3.back);
-
-			if (primaryAxis.x < 0.0f)
-				MoveThrottle += ort * (Mathf.Abs(primaryAxis.x) * transform.lossyScale.x * moveInfluence *
-									   Speed * Vector3.left);
-
-			if (primaryAxis.x > 0.0f)
-				MoveThrottle += ort * (primaryAxis.x * transform.lossyScale.x * moveInfluence * Speed *
-									   Vector3.right);
+            if (primaryAxis.y != 0)
+                MoveThrottle += playerCamera.transform.forward * (primaryAxis.y * transform.lossyScale.z * Speed);
+			if (primaryAxis.x != 0)
+                MoveThrottle += playerCamera.transform.right * (primaryAxis.x * transform.lossyScale.x * Speed);
 		}
 
 		if (EnableRotation)
