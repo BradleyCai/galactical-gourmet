@@ -303,7 +303,7 @@ Prefab:
     - target: {fileID: 114074228019407610, guid: 9ed21967afa54c04483c4a84b3b95dfa,
         type: 2}
       propertyPath: playerSize
-      value: 50
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ed21967afa54c04483c4a84b3b95dfa, type: 2}
@@ -472,6 +472,10 @@ Prefab:
         type: 2}
       propertyPath: far clip plane
       value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400010, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
+      propertyPath: Speed
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
@@ -786,17 +790,17 @@ Prefab:
     - target: {fileID: 114651393747420924, guid: efde8150d7bdb4b4e9f8ff4306952c1a,
         type: 2}
       propertyPath: startSpawnCount
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114651393747420924, guid: efde8150d7bdb4b4e9f8ff4306952c1a,
         type: 2}
       propertyPath: startSpawnCountVariance
-      value: 0.3
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 114651393747420924, guid: efde8150d7bdb4b4e9f8ff4306952c1a,
         type: 2}
       propertyPath: spawnSpeed
-      value: 100
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 114651393747420924, guid: efde8150d7bdb4b4e9f8ff4306952c1a,
         type: 2}
@@ -806,12 +810,12 @@ Prefab:
     - target: {fileID: 114651393747420924, guid: efde8150d7bdb4b4e9f8ff4306952c1a,
         type: 2}
       propertyPath: spawnDistance
-      value: 800
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 114651393747420924, guid: efde8150d7bdb4b4e9f8ff4306952c1a,
         type: 2}
       propertyPath: spawnDistanceVariance
-      value: 0.4
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 114651393747420924, guid: efde8150d7bdb4b4e9f8ff4306952c1a,
         type: 2}
@@ -826,7 +830,7 @@ Prefab:
     - target: {fileID: 114651393747420924, guid: efde8150d7bdb4b4e9f8ff4306952c1a,
         type: 2}
       propertyPath: spawnCooldown
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 114651393747420924, guid: efde8150d7bdb4b4e9f8ff4306952c1a,
         type: 2}
@@ -842,6 +846,16 @@ Prefab:
         type: 2}
       propertyPath: spawnSpeedVariance
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114651393747420924, guid: efde8150d7bdb4b4e9f8ff4306952c1a,
+        type: 2}
+      propertyPath: distIsPlayerBased
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114651393747420924, guid: efde8150d7bdb4b4e9f8ff4306952c1a,
+        type: 2}
+      propertyPath: spawnSize
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: efde8150d7bdb4b4e9f8ff4306952c1a, type: 2}
