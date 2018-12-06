@@ -371,7 +371,6 @@ public class OVRPlayerController : MonoBehaviour
 				primaryAxis.x = Mathf.Round(primaryAxis.x * FixedSpeedSteps) / FixedSpeedSteps;
 			}
 
-            Debug.Log(primaryAxis);
             if (primaryAxis.y != 0)
                 MoveThrottle += playerCamera.transform.forward * (primaryAxis.y * transform.lossyScale.z * Speed);
 			if (primaryAxis.x != 0)

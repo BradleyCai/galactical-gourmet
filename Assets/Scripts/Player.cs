@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour {
     public GameData gameData;
 	public GameObject scoreText;
+	public GameObject playerObject;
 	private MouseLook mouseLook;
 
 	void Start () {
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour {
             gameData.isDebugging = !gameData.isDebugging;
             mouseLook.enabled = !mouseLook.enabled;
             scoreText.SetActive(!scoreText.activeSelf);
+            playerObject.transform.position -= new Vector3(0, 1, 0);
 		}
 	}
 }
