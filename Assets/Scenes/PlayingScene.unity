@@ -334,16 +334,20 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 855434402}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1538344984}
   - {fileID: 2145312614}
   - {fileID: 1527484632}
   - {fileID: 32654598}
-  m_Father: {fileID: 2068098446}
+  m_Father: {fileID: 1045765026}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1045765026 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 477154, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
+  m_PrefabInternal: {fileID: 1510470106}
 --- !u!1001 &1143595133
 Prefab:
   m_ObjectHideFlags: 0
@@ -381,7 +385,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4705748121624980, guid: f9f98837e695289499038735f868112a, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114852430367781346, guid: f9f98837e695289499038735f868112a,
         type: 2}
@@ -440,11 +444,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 14300000, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
       propertyPath: m_Enabled
@@ -476,6 +480,10 @@ Prefab:
       propertyPath: Speed
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 11400010, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
+      propertyPath: gameData
+      value: 
+      objectReference: {fileID: 1701888630}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
   m_IsPrefabParent: 0
@@ -562,7 +570,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1538344983}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -874,6 +882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcd04ce9fc1d17c42b47992af65f6fbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameData: {fileID: 1701888630}
   scoreText: {fileID: 675700317}
 --- !u!114 &2068098441
 MonoBehaviour:
@@ -881,14 +890,14 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2068098439}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 68ec2fe99d1108b9d0006a298d76c639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   axes: 0
-  sensitivityX: 2
-  sensitivityY: 2
+  sensitivityX: 3
+  sensitivityY: 3
   minimumX: -360
   maximumX: 360
   minimumY: -90

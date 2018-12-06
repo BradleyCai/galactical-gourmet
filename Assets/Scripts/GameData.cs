@@ -7,4 +7,5 @@ public class GameData : MonoBehaviour {
 	public int planetCount;
 	public int playerScore;
 	public float playerSize;
+    public bool isDebugging;
 }
