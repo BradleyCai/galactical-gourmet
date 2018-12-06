@@ -333,15 +333,16 @@ public class OVRPlayerController : MonoBehaviour
 			Vector3 ortEuler = ort.eulerAngles;
 			ortEuler.z = ortEuler.x = 0f;
 			ort = Quaternion.Euler(ortEuler);
+            GameObject playerCamera = GameObject.Find("CenterEyeAnchor");
 
             if (moveForward)
-				MoveThrottle += transform.forward * (transform.lossyScale.z * Speed);
+				MoveThrottle += playerCamera.transform.forward * (transform.lossyScale.z * Speed);
 			if (moveBack)
-				MoveThrottle += -transform.forward * (transform.lossyScale.z * Speed);
+				MoveThrottle += -playerCamera.transform.forward * (transform.lossyScale.z * Speed);
 			if (moveRight)
-				MoveThrottle += transform.right * (transform.lossyScale.x * Speed);
+				MoveThrottle += playerCamera.transform.right * (transform.lossyScale.x * Speed);
 			if (moveLeft)
-				MoveThrottle += -transform.right * (transform.lossyScale.x * Speed);
+				MoveThrottle += -playerCamera.transform.right * (transform.lossyScale.x * Speed);
 
 			moveInfluence = Acceleration * 0.1f * MoveScale * MoveScaleMultiplier;
 
