@@ -50,14 +50,17 @@ public class SpaceObjSpawner : MonoBehaviour {
 		Vector3 velocity;
 		
 		GameObject spaceObj = Instantiate(objPrefab);
+
 		spaceObj.transform.localScale = new Vector3(size, size, size);
 		spaceObj.transform.position = GetPosition(spawnDirection, transform.position, distance);
 		spaceObj.transform.rotation = new Quaternion(0, 0, 0, 1);
+
 		velocity = Vector3.Normalize(transform.position - spaceObj.transform.position) * spawnSpeed;
 		velocity.x += Random.Range(-spawnDirectionVariance, spawnSpeedVariance);
 		velocity.y += Random.Range(-spawnDirectionVariance, spawnSpeedVariance);
 		velocity.z += Random.Range(-spawnDirectionVariance, spawnSpeedVariance);
 		spaceObj.GetComponent<Rigidbody>().velocity = velocity;
+
 		spaceObj.GetComponent<Renderer>().material.mainTexture = textures[Random.Range(0, textures.Length)];
 	}
 	
