@@ -21,6 +21,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class OVRPlayerController : MonoBehaviour
 {
+    public GameData gameData;
 	/// <summary>
 	/// The rate acceleration during movement.
 	/// </summary>
@@ -333,23 +334,37 @@ public class OVRPlayerController : MonoBehaviour
 			Vector3 ortEuler = ort.eulerAngles;
 			ortEuler.z = ortEuler.x = 0f;
 			ort = Quaternion.Euler(ortEuler);
+            GameObject playerCamera = GameObject.Find("CenterEyeAnchor");
 
-            if (moveForward)
-				MoveThrottle += transform.forward * (transform.lossyScale.z * Speed);
-			if (moveBack)
-				MoveThrottle += -transform.forward * (transform.lossyScale.z * Speed);
-			if (moveRight)
-				MoveThrottle += transform.right * (transform.lossyScale.x * Speed);
-			if (moveLeft)
-				MoveThrottle += -transform.right * (transform.lossyScale.x * Speed);
+            if (gameData.isDebugging) {
+                if (moveForward)
+                    MoveThrottle += transform.forward * (transform.lossyScale.z * Speed);
+                if (moveBack)
+                    MoveThrottle += -transform.forward * (transform.lossyScale.z * Speed);
+                if (moveRight)
+                    MoveThrottle += transform.right * (transform.lossyScale.x * Speed);
+                if (moveLeft)
+                    MoveThrottle += -transform.right * (transform.lossyScale.x * Speed);
+            }
+            else {
+                if (moveForward)
+                    MoveThrottle += playerCamera.transform.forward * (transform.lossyScale.z * Speed);
+                if (moveBack)
+                    MoveThrottle += -playerCamera.transform.forward * (transform.lossyScale.z * Speed);
+                if (moveRight)
+                    MoveThrottle += playerCamera.transform.right * (transform.lossyScale.x * Speed);
+                if (moveLeft)
+                    MoveThrottle += -playerCamera.transform.right * (transform.lossyScale.x * Speed);
+            }
 
 			moveInfluence = Acceleration * 0.1f * MoveScale * MoveScaleMultiplier;
 
 #if !UNITY_ANDROID // LeftTrigger not avail on Android game pad
 			moveInfluence *= 1.0f + OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger);
 #endif
-
 			Vector2 primaryAxis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
+			bool moveUp = OVRInput.Get(OVRInput.Button.Two);
+			bool moveDown = OVRInput.Get(OVRInput.Button.One);
 
 			// If speed quantization is enabled, adjust the input to the number of fixed speed steps.
 			if (FixedSpeedSteps > 0)
@@ -358,20 +373,14 @@ public class OVRPlayerController : MonoBehaviour
 				primaryAxis.x = Mathf.Round(primaryAxis.x * FixedSpeedSteps) / FixedSpeedSteps;
 			}
 
-			if (primaryAxis.y > 0.0f)
-				MoveThrottle += ort * (primaryAxis.y * transform.lossyScale.z * moveInfluence * Vector3.forward);
-
-			if (primaryAxis.y < 0.0f)
-				MoveThrottle += ort * (Mathf.Abs(primaryAxis.y) * transform.lossyScale.z * moveInfluence *
-									   Speed * Vector3.back);
-
-			if (primaryAxis.x < 0.0f)
-				MoveThrottle += ort * (Mathf.Abs(primaryAxis.x) * transform.lossyScale.x * moveInfluence *
-									   Speed * Vector3.left);
-
-			if (primaryAxis.x > 0.0f)
-				MoveThrottle += ort * (primaryAxis.x * transform.lossyScale.x * moveInfluence * Speed *
-									   Vector3.right);
+            if (primaryAxis.y != 0)
+                MoveThrottle += playerCamera.transform.forward * (primaryAxis.y * transform.lossyScale.z * Speed);
+			if (primaryAxis.x != 0)
+                MoveThrottle += playerCamera.transform.right * (primaryAxis.x * transform.lossyScale.x * Speed);
+            if (moveUp)
+                MoveThrottle += playerCamera.transform.up * (transform.lossyScale.y * Speed);
+            if (moveDown)
+                MoveThrottle += -playerCamera.transform.up * (transform.lossyScale.y * Speed);
 		}
 
 		if (EnableRotation)
