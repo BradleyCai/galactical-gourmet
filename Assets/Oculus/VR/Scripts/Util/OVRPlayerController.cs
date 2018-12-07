@@ -363,6 +363,8 @@ public class OVRPlayerController : MonoBehaviour
 			moveInfluence *= 1.0f + OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger);
 #endif
 			Vector2 primaryAxis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
+			bool moveUp = OVRInput.Get(OVRInput.Button.Two);
+			bool moveDown = OVRInput.Get(OVRInput.Button.One);
 
 			// If speed quantization is enabled, adjust the input to the number of fixed speed steps.
 			if (FixedSpeedSteps > 0)
@@ -375,6 +377,10 @@ public class OVRPlayerController : MonoBehaviour
                 MoveThrottle += playerCamera.transform.forward * (primaryAxis.y * transform.lossyScale.z * Speed);
 			if (primaryAxis.x != 0)
                 MoveThrottle += playerCamera.transform.right * (primaryAxis.x * transform.lossyScale.x * Speed);
+            if (moveUp)
+                MoveThrottle += playerCamera.transform.up * (transform.lossyScale.y * Speed);
+            if (moveDown)
+                MoveThrottle += -playerCamera.transform.up * (transform.lossyScale.y * Speed);
 		}
 
 		if (EnableRotation)
