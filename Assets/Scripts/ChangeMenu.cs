@@ -16,8 +16,14 @@ public class ChangeMenu : MonoBehaviour {
 		if (buttonPressed == "StartButton") {
 			changeMenu("PlayingScene");
 		}
+		else if (buttonPressed == "InstructionButton") {
+			changeMenu("InstructionScene");
+		}
 		else if (buttonPressed == "ExitButton") {
 			exitGame();
+		}
+		else if (buttonPressed == "BackButton") {
+			changeMenu("StartScene");
 		}
 	}
 
