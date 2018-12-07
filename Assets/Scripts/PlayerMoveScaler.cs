@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMoveScaler : MonoBehaviour {
     public GameObject player;
+    public GameObject parent;
     public GameData gameData;
 
 	// Use this for initialization
@@ -13,7 +14,9 @@ public class PlayerMoveScaler : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        // player.transform.position *= gameData.playerSize;
-        // player.transform.position = transform.position * 5;
+        Vector3 handOrt = transform.position - parent.transform.position;
+
+        player.transform.position = (transform.position - handOrt) + (handOrt * gameData.playerSize/5);
+        player.transform.rotation = transform.rotation;
 	}
 }
