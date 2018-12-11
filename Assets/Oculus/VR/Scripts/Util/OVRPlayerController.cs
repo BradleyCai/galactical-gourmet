@@ -14,6 +14,7 @@ permissions and limitations under the License.
 
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Controls the player's movement in virtual reality.
@@ -21,7 +22,10 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class OVRPlayerController : MonoBehaviour
 {
+	public Scene currentScene;
+
     public GameData gameData;
+
 	/// <summary>
 	/// The rate acceleration during movement.
 	/// </summary>
@@ -152,6 +156,7 @@ public class OVRPlayerController : MonoBehaviour
 		var p = CameraRig.transform.localPosition;
 		p.z = OVRManager.profile.eyeDepth;
 		CameraRig.transform.localPosition = p;
+		currentScene = SceneManager.GetActiveScene();
 	}
 
 	void Awake()
@@ -280,10 +285,6 @@ public class OVRPlayerController : MonoBehaviour
 			MoveThrottle += (actualXZ - predictedXZ) / (SimulationRate * Time.deltaTime);
 	}
 
-
-
-
-
 	public virtual void UpdateMovement()
 	{
 		if (HaltUpdateMovement)
@@ -363,8 +364,28 @@ public class OVRPlayerController : MonoBehaviour
 			moveInfluence *= 1.0f + OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger);
 #endif
 			Vector2 primaryAxis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
-			bool moveUp = OVRInput.Get(OVRInput.Button.Two);
-			bool moveDown = OVRInput.Get(OVRInput.Button.One);
+			if(currentScene.name == "StartScene") {
+				if (OVRInput.Get(OVRInput.Button.One)) // start the game
+					ChangeMenu.PlayGame();
+				else if (OVRInput.Get(OVRInput.Button.Three)) // show instructions
+					ChangeMenu.LoadInstructions();
+				else if (OVRInput.Get(OVRInput.Button.Two)) // quit the program
+					ChangeMenu.QuitGame();
+			
+			}
+			if(currentScene.name == "InstructionScene") {
+				if (OVRInput.Get(OVRInput.Button.Two)) // go back to main menu
+					ChangeMenu.BackScene();
+			}
+
+			if(currentScene.name == "PlayingScene") {
+				bool moveUp = OVRInput.Get(OVRInput.Button.Two);
+				bool moveDown = OVRInput.Get(OVRInput.Button.One);
+				if (moveUp)
+                	MoveThrottle += playerCamera.transform.up * (transform.lossyScale.y * Speed);
+            	if (moveDown)
+                	MoveThrottle += -playerCamera.transform.up * (transform.lossyScale.y * Speed);
+			}
 
 			// If speed quantization is enabled, adjust the input to the number of fixed speed steps.
 			if (FixedSpeedSteps > 0)
@@ -377,10 +398,7 @@ public class OVRPlayerController : MonoBehaviour
                 MoveThrottle += playerCamera.transform.forward * (primaryAxis.y * transform.lossyScale.z * Speed);
 			if (primaryAxis.x != 0)
                 MoveThrottle += playerCamera.transform.right * (primaryAxis.x * transform.lossyScale.x * Speed);
-            if (moveUp)
-                MoveThrottle += playerCamera.transform.up * (transform.lossyScale.y * Speed);
-            if (moveDown)
-                MoveThrottle += -playerCamera.transform.up * (transform.lossyScale.y * Speed);
+            
 		}
 
 		if (EnableRotation)

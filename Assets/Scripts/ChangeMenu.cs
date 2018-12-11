@@ -6,11 +6,19 @@ using UnityEngine.EventSystems;
 
 public class ChangeMenu : MonoBehaviour {
 
-	public void PlayGame() {
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+	public static void PlayGame() {
+		SceneManager.LoadScene("PlayingScene");
 	}
 
-	public void QuitGame() {
+	public static void LoadInstructions() {
+		SceneManager.LoadScene("InstructionScene");
+	}
+
+	public static void BackScene() {
+		SceneManager.LoadScene("StartScene");
+	}
+
+	public static void QuitGame() {
 		#if UNITY_EDITOR
 		UnityEditor.EditorApplication.isPlaying = false;
 		#else
@@ -18,36 +26,4 @@ public class ChangeMenu : MonoBehaviour {
 		#endif
 	}
 
-
-
-/**
-	void update() {
-		string buttonPressed = EventSystem.current.currentSelectedGameObject.name;
-
-		if (buttonPressed == "StartButton") {
-			changeMenu("PlayingScene");
-		}
-		else if (buttonPressed == "InstructionButton") {
-			changeMenu("InstructionScene");
-		}
-		else if (buttonPressed == "ExitButton") {
-			exitGame();
-		}
-		else if (buttonPressed == "BackButton") {
-			changeMenu("StartScene");
-		}
-	}
-
-	public void changeMenu(string sceneName) {
-		Application.LoadLevel(sceneName);
-	}
-
-	public void exitGame() {
-		#if UNITY_EDITOR
-		UnityEditor.EditorApplication.isPlaying = false;
-		#else
-		Application.Quit();
-		#endif
-	}
-**/
 }
