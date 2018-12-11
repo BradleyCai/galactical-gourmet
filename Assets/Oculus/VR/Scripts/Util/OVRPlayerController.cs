@@ -373,6 +373,7 @@ public class OVRPlayerController : MonoBehaviour
 					ChangeMenu.QuitGame();
 			
 			}
+			
 			if(currentScene.name == "InstructionScene") {
 				if (OVRInput.Get(OVRInput.Button.Two)) // go back to main menu
 					ChangeMenu.BackScene();

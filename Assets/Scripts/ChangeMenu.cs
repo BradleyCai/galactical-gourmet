@@ -26,4 +26,20 @@ public class ChangeMenu : MonoBehaviour {
 		#endif
 	}
 
+	public void PlayGameMouse() {
+		PlayGame();
+	}
+
+	public void LoadInstructionsMouse() {
+		LoadInstructions();
+	}
+
+	public void BackSceneMouse() {
+		BackScene();
+	}
+
+	public void QuitGameMouse() {
+		QuitGame();
+	} 
+
 }
