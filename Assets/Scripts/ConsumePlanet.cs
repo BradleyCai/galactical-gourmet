@@ -26,7 +26,7 @@ public class ConsumePlanet : MonoBehaviour {
 			gameData.playerSize *= scaleAmount;
 
 			for (int i = 0; i < cameras.Length; i++) {
-				cameras[i].camera.farClipPlane *= scaleAmount;
+				cameras[i].GetComponent<Camera>().farClipPlane *= scaleAmount;
 			}
 		}
 	}
