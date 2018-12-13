@@ -302,11 +302,13 @@ MonoBehaviour:
 
     The left-hand joystick controls your movement
 
+    The left-hand buttons will quit the game
+
     The right-hand joystick snaps the camera left and right
 
     The right-hand buttons move you up and down
 
-    To quit in-game, press x or y on the left hand controller'
+'
 --- !u!222 &972748321
 CanvasRenderer:
   m_ObjectHideFlags: 0
