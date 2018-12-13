@@ -386,6 +386,8 @@ public class OVRPlayerController : MonoBehaviour
                 	MoveThrottle += playerCamera.transform.up * (transform.lossyScale.y * Speed);
             	if (moveDown)
                 	MoveThrottle += -playerCamera.transform.up * (transform.lossyScale.y * Speed);
+				if (Input.GetKey(KeyCode.Escape)) // go back to main menu
+                    SceneManager.LoadScene("StartScene");
 			}
 
 			// If speed quantization is enabled, adjust the input to the number of fixed speed steps.
