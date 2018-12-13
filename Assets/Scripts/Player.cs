@@ -10,8 +10,8 @@ public class Player : MonoBehaviour {
 
 	void Start () {
         mouseLook = GetComponent<MouseLook>();
-        mouseLook.enabled = false;
-        scoreText.SetActive(false);
+        //mouseLook.enabled = false;
+        //scoreText.SetActive(false);
 	}
 	
 	void Update () {

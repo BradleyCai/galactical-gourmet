@@ -364,30 +364,37 @@ public class OVRPlayerController : MonoBehaviour
 			moveInfluence *= 1.0f + OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger);
 #endif
 			Vector2 primaryAxis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
+			/** NOT SURE IF WE NEED THIS, SHOULD BE HANDLED IN BUTTON TRIGGER
 			if(currentScene.name == "StartScene") {
-				if (OVRInput.Get(OVRInput.Button.One)) // start the game
-					ChangeMenu.PlayGame();
-				else if (OVRInput.Get(OVRInput.Button.Three)) // show instructions
-					ChangeMenu.LoadInstructions();
-				else if (OVRInput.Get(OVRInput.Button.Two)) // quit the program
-					ChangeMenu.QuitGame();
-			
+				if (OVRInput.Get(OVRInput.Button.One)) { // start the game
+					SceneManager.LoadScene("PlayScene");
+				}
+				else if (OVRInput.Get(OVRInput.Button.Three)) { // show instructions
+					SceneManager.LoadScene("InstructionScene");
+				}
+				else if (OVRInput.Get(OVRInput.Button.Two)) {} // quit the program
+					#if UNITY_EDITOR
+	                UnityEditor.EditorApplication.isPlaying = false;
+	                #else
+	                Application.Quit();
+	                #endif
+				}
 			}
 			
 			if(currentScene.name == "InstructionScene") {
 				if (OVRInput.Get(OVRInput.Button.Two)) // go back to main menu
-					ChangeMenu.BackScene();
+					SceneManager.LoadScene("StartScene");
 			}
-
-			if(currentScene.name == "PlayingScene") {
+			**/
+			if(currentScene.name == "PlayScene") {
 				bool moveUp = OVRInput.Get(OVRInput.Button.Two);
 				bool moveDown = OVRInput.Get(OVRInput.Button.One);
 				if (moveUp)
                 	MoveThrottle += playerCamera.transform.up * (transform.lossyScale.y * Speed);
             	if (moveDown)
                 	MoveThrottle += -playerCamera.transform.up * (transform.lossyScale.y * Speed);
-				if (Input.GetKey(KeyCode.Escape)) // go back to main menu
-                    SceneManager.LoadScene("StartScene");
+				if (OVRInput.Get(OVRInput.Button.Three) || OVRInput.Get(OVRInput.Button.Four) || Input.GetKey(KeyCode.Escape)) // go end screen
+                    SceneManager.LoadScene("GameOverScene");
 			}
 
 			// If speed quantization is enabled, adjust the input to the number of fixed speed steps.
