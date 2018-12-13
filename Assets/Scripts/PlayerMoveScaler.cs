@@ -15,13 +15,14 @@ public class PlayerMoveScaler : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         Vector3 handOrt = transform.position - parent.transform.position;
+        float handicapSize = gameData.playerSize + (gameData.playerSize / 10);
 
         if (!gameData.isDebugging)
             player.transform.position = transform.position + handOrt * 2 + handOrt * gameData.playerSize;
         else
             player.transform.position = transform.position + (transform.forward * 0.8f) + transform.forward * gameData.playerSize;
 
-        player.transform.localScale = new Vector3(gameData.playerSize, gameData.playerSize, gameData.playerSize);
+        player.transform.localScale = new Vector3(handicapSize, handicapSize, handicapSize);
         player.transform.rotation = transform.rotation;
 	}
 }

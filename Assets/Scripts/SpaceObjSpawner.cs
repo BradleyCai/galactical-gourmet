@@ -20,6 +20,7 @@ public class SpaceObjSpawner : MonoBehaviour {
 	public bool doesntRespawn; // Makes it so this spawner only spawns at the beginning
 	public float spawnCooldown;
 	public float spawnCooldownVariance;
+	public int[] texturesUsed;
 
 	private float time;
 	private float nextSpawnCooldown;
@@ -45,7 +46,7 @@ public class SpaceObjSpawner : MonoBehaviour {
 	
 	void SpawnSpaceObj(GameObject objPrefab) {
 		Quaternion spawnDirection = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
-		float size = varyValue(sizeIsPlayerBased ? gameData.playerSize : spawnSize, spawnSizeVariance);
+		float size = varyValue(sizeIsPlayerBased ? gameData.playerSize + spawnSize : spawnSize, spawnSizeVariance);
 		float distance = varyValue(distIsPlayerBased ? spawnDistance * gameData.playerSize / 10 : spawnDistance, spawnSizeVariance);
 		Vector3 velocity;
 		
