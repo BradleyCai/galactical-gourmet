@@ -386,7 +386,7 @@ public class OVRPlayerController : MonoBehaviour
                 	MoveThrottle += playerCamera.transform.up * (transform.lossyScale.y * Speed);
             	if (moveDown)
                 	MoveThrottle += -playerCamera.transform.up * (transform.lossyScale.y * Speed);
-				if (Input.GetKey(KeyCode.Escape)) // go back to main menu
+				if ( OVRInput.Get(OVRInput.Button.Three) || OVRInput.Get(OVRInput.Button.Four) || Input.GetKey(KeyCode.Escape)) // go end screen
                     ChangeMenu.GameOverScene();
 			}
 

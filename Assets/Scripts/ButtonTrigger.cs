@@ -29,10 +29,8 @@ public class ButtonTrigger : MonoBehaviour {
 
 		if(currentScene.name == "StartScene") {
             if (Input.GetKeyDown(KeyCode.Alpha1)) // start the game
-				ChangeMenu.PlayScene();
-			else if (Input.GetKeyDown(KeyCode.Alpha2)) // show instructions
 				ChangeMenu.InstructionScene();
-			else if (Input.GetKeyDown(KeyCode.Alpha3)) // quit the program
+			else if (Input.GetKeyDown(KeyCode.Alpha2)) // quit the program
 				ChangeMenu.QuitGame();
 
             if (primaryAxis.y < 0) {
