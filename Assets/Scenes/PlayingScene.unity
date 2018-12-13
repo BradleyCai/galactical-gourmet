@@ -88,6 +88,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaDirect: 0.5
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -304,6 +305,11 @@ Prefab:
       propertyPath: playerSize
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 114074228019407610, guid: 9ed21967afa54c04483c4a84b3b95dfa,
+        type: 2}
+      propertyPath: sizeGrowth
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ed21967afa54c04483c4a84b3b95dfa, type: 2}
   m_IsPrefabParent: 0
@@ -346,7 +352,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 855434403}
-  - component: {fileID: 855434404}
   m_Layer: 0
   m_Name: PlayerObject
   m_TagString: Untagged
@@ -367,22 +372,11 @@ Transform:
   - {fileID: 1842950915}
   - {fileID: 1538344984}
   - {fileID: 32654598}
-  - {fileID: 2145312614}
   - {fileID: 1527484632}
+  - {fileID: 2145312614}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &855434404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 855434402}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d81fa88f1326b644d90ce6060123af1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1143595133
 Prefab:
   m_ObjectHideFlags: 0
@@ -547,6 +541,22 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 14300000, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
+      propertyPath: m_Radius
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 14300000, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
+      propertyPath: m_Height
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 14300000, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
+      propertyPath: m_StepOffset
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 14300000, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
+      propertyPath: m_SkinWidth
+      value: 0.0001
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 2}
   m_IsPrefabParent: 0
@@ -600,6 +610,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameData: {fileID: 1701888630}
+  leftHand: {fileID: 703644891}
+  parent: {fileID: 691394451}
+  player: {fileID: 855434402}
+  controller: {fileID: 2068098439}
 --- !u!54 &1538344986
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -705,7 +719,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4070033446575652, guid: efde8150d7bdb4b4e9f8ff4306952c1a, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: gameData
@@ -746,7 +760,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1214225582773060, guid: efde8150d7bdb4b4e9f8ff4306952c1a, type: 2}
       propertyPath: m_Name
-      value: PlanetSpawnerStart
+      value: HugePlanetSpawner
       objectReference: {fileID: 0}
     - target: {fileID: 114651393747420924, guid: efde8150d7bdb4b4e9f8ff4306952c1a,
         type: 2}
@@ -905,11 +919,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4070033446575652, guid: efde8150d7bdb4b4e9f8ff4306952c1a, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1214225582773060, guid: efde8150d7bdb4b4e9f8ff4306952c1a, type: 2}
       propertyPath: m_Name
-      value: PlanetSpawnerPlayerBased
+      value: SmallerPlanetSpawner
       objectReference: {fileID: 0}
     - target: {fileID: 114651393747420924, guid: efde8150d7bdb4b4e9f8ff4306952c1a,
         type: 2}
@@ -955,7 +969,7 @@ Prefab:
     - target: {fileID: 114651393747420924, guid: efde8150d7bdb4b4e9f8ff4306952c1a,
         type: 2}
       propertyPath: sizeIsPlayerBased
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114651393747420924, guid: efde8150d7bdb4b4e9f8ff4306952c1a,
         type: 2}
@@ -965,7 +979,7 @@ Prefab:
     - target: {fileID: 114651393747420924, guid: efde8150d7bdb4b4e9f8ff4306952c1a,
         type: 2}
       propertyPath: spawnCooldown
-      value: 0.2
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 114651393747420924, guid: efde8150d7bdb4b4e9f8ff4306952c1a,
         type: 2}
