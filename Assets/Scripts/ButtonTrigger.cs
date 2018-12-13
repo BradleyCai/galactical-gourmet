@@ -19,13 +19,12 @@ public class ButtonTrigger : MonoBehaviour {
         currButton = 0;
         highlight = ColorBlock.defaultColorBlock;
         highlight.normalColor = new Color(127/255f, 175/255f, 240/255f, 1f);
-        buttonDown = OVRInput.GetDown(OVRInput.Button.One) || OVRInput.GetDown(OVRInput.Button.Two) || OVRInput.Get(OVRInput.Button.Three) || OVRInput.Get(OVRInput.Button.Four);
     }
 
 	// Update is called once per frame
 	void Update () {
         Vector2 primaryAxis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
-        buttonDown = OVRInput.GetDown(OVRInput.Button.One) || OVRInput.GetDown(OVRInput.Button.Two) || OVRInput.Get(OVRInput.Button.Three) || OVRInput.Get(OVRInput.Button.Four);
+        buttonDown = OVRInput.GetDown(OVRInput.Button.One) || OVRInput.GetDown(OVRInput.Button.Two) || OVRInput.GetDown(OVRInput.Button.Three) || OVRInput.GetDown(OVRInput.Button.Four);
 
 		if(currentScene.name == "StartScene") {
             /* For Joystick reading */
