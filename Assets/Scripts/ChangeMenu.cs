@@ -6,16 +6,20 @@ using UnityEngine.EventSystems;
 
 public class ChangeMenu : MonoBehaviour {
 
-	public static void PlayGame() {
-		SceneManager.LoadScene("PlayingScene");
+	public static void StartScene() {
+		SceneManager.LoadScene("StartScene");
 	}
 
-	public static void LoadInstructions() {
+	public static void InstructionScene() {
 		SceneManager.LoadScene("InstructionScene");
 	}
 
-	public static void BackScene() {
-		SceneManager.LoadScene("StartScene");
+	public static void PlayScene() {
+		SceneManager.LoadScene("PlayingScene");
+	}
+
+	public static void GameOverScene() {
+		SceneManager.LoadScene("GameOverScene");
 	}
 
 	public static void QuitGame() {
@@ -26,20 +30,5 @@ public class ChangeMenu : MonoBehaviour {
 		#endif
 	}
 
-	public void PlayGameMouse() {
-		PlayGame();
-	}
-
-	public void LoadInstructionsMouse() {
-		LoadInstructions();
-	}
-
-	public void BackSceneMouse() {
-		BackScene();
-	}
-
-	public void QuitGameMouse() {
-		QuitGame();
-	} 
 
 }

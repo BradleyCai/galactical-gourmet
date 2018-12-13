@@ -366,9 +366,9 @@ public class OVRPlayerController : MonoBehaviour
 			Vector2 primaryAxis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
 			if(currentScene.name == "StartScene") {
 				if (OVRInput.Get(OVRInput.Button.One)) // start the game
-					ChangeMenu.PlayGame();
+					ChangeMenu.PlayScene();
 				else if (OVRInput.Get(OVRInput.Button.Three)) // show instructions
-					ChangeMenu.LoadInstructions();
+					ChangeMenu.InstructionScene();
 				else if (OVRInput.Get(OVRInput.Button.Two)) // quit the program
 					ChangeMenu.QuitGame();
 			
@@ -376,7 +376,7 @@ public class OVRPlayerController : MonoBehaviour
 			
 			if(currentScene.name == "InstructionScene") {
 				if (OVRInput.Get(OVRInput.Button.Two)) // go back to main menu
-					ChangeMenu.BackScene();
+					ChangeMenu.StartScene();
 			}
 
 			if(currentScene.name == "PlayingScene") {
@@ -387,7 +387,7 @@ public class OVRPlayerController : MonoBehaviour
             	if (moveDown)
                 	MoveThrottle += -playerCamera.transform.up * (transform.lossyScale.y * Speed);
 				if (Input.GetKey(KeyCode.Escape)) // go back to main menu
-                    SceneManager.LoadScene("StartScene");
+                    ChangeMenu.GameOverScene();
 			}
 
 			// If speed quantization is enabled, adjust the input to the number of fixed speed steps.

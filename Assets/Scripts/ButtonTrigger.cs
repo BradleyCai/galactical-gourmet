@@ -29,10 +29,10 @@ public class ButtonTrigger : MonoBehaviour {
 
 		if(currentScene.name == "StartScene") {
             if (Input.GetKeyDown(KeyCode.Alpha1)) // start the game
-				ChangeMenu.PlayGame();
-			if (Input.GetKeyDown(KeyCode.Alpha2)) // show instructions
-				ChangeMenu.LoadInstructions();
-			if (Input.GetKeyDown(KeyCode.Alpha3)) // quit the program
+				ChangeMenu.PlayScene();
+			else if (Input.GetKeyDown(KeyCode.Alpha2)) // show instructions
+				ChangeMenu.InstructionScene();
+			else if (Input.GetKeyDown(KeyCode.Alpha3)) // quit the program
 				ChangeMenu.QuitGame();
 
             if (primaryAxis.y < 0) {
@@ -60,7 +60,7 @@ public class ButtonTrigger : MonoBehaviour {
 
             if (currButton == 0 && buttonDown && !isDown) {
                 isDown = true;
-                ChangeMenu.LoadInstructions();
+                ChangeMenu.InstructionScene();
             }
             else if (currButton == 1 && buttonDown && !isDown) {
                 isDown = true;
@@ -71,16 +71,29 @@ public class ButtonTrigger : MonoBehaviour {
                 isDown = false;
             }
 		}
-		if(currentScene.name == "InstructionScene") {
-            if (Input.GetKeyDown(KeyCode.Alpha1) || buttonDown) { // go back to main menu
+
+		else if(currentScene.name == "InstructionScene") {
+            if (Input.GetKeyDown(KeyCode.Alpha1) || buttonDown) { 
                 if (!isDown) {
                     isDown = true;
-                    ChangeMenu.PlayGame();
+                    ChangeMenu.PlayScene();
                 }
             }
             else if (!buttonDown) {
                 isDown = false;
             }
 		}
+
+        else if(currentScene.name == "GameOverScene") {
+            if (Input.GetKeyDown(KeyCode.Alpha1) || buttonDown) { 
+                if (!isDown) {
+                    isDown = true;
+                    ChangeMenu.StartScene();
+                }
+            }
+            else if (!buttonDown) {
+                isDown = false;
+            }
+        }
 	}
 }
