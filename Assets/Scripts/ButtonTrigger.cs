@@ -10,7 +10,7 @@ public class ButtonTrigger : MonoBehaviour {
 	private Scene currentScene;
     private int currButton;
     private ColorBlock highlight;
-    private bool isDown;
+    private bool buttonDown;
     private bool isJoyDown;
 
     // Use this for initialization
@@ -19,13 +19,13 @@ public class ButtonTrigger : MonoBehaviour {
         currButton = 0;
         highlight = ColorBlock.defaultColorBlock;
         highlight.normalColor = new Color(127/255f, 175/255f, 240/255f, 1f);
-        isDown = OVRInput.Get(OVRInput.Button.One);
+        buttonDown = OVRInput.GetDown(OVRInput.Button.One) || OVRInput.GetDown(OVRInput.Button.Two) || OVRInput.Get(OVRInput.Button.Three) || OVRInput.Get(OVRInput.Button.Four);
     }
 
 	// Update is called once per frame
 	void Update () {
         Vector2 primaryAxis = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
-        bool buttonDown = OVRInput.Get(OVRInput.Button.One) || OVRInput.Get(OVRInput.Button.Two) || OVRInput.Get(OVRInput.Button.Three) || OVRInput.Get(OVRInput.Button.Four);
+        buttonDown = OVRInput.GetDown(OVRInput.Button.One) || OVRInput.GetDown(OVRInput.Button.Two) || OVRInput.Get(OVRInput.Button.Three) || OVRInput.Get(OVRInput.Button.Four);
 
 		if(currentScene.name == "StartScene") {
             if (Input.GetKeyDown(KeyCode.Alpha1)) // start the game
@@ -56,41 +56,28 @@ public class ButtonTrigger : MonoBehaviour {
                     buttons[i].colors = ColorBlock.defaultColorBlock;
             }
 
-            if (currButton == 0 && buttonDown && !isDown) {
-                isDown = true;
+            if (currButton == 0 && buttonDown) {
                 ChangeMenu.InstructionScene();
             }
-            else if (currButton == 1 && buttonDown && !isDown) {
-                isDown = true;
+            else if (currButton == 1 && buttonDown) {
                 ChangeMenu.QuitGame();
             }
 
-            if (!buttonDown) {
-                isDown = false;
-            }
 		}
 
 		else if(currentScene.name == "InstructionScene") {
             if (Input.GetKeyDown(KeyCode.Alpha1) || buttonDown) { 
-                if (!isDown) {
-                    isDown = true;
+                if (buttonDown) {
                     ChangeMenu.PlayScene();
                 }
-            }
-            else if (!buttonDown) {
-                isDown = false;
             }
 		}
 
         else if(currentScene.name == "GameOverScene") {
             if (Input.GetKeyDown(KeyCode.Alpha1) || buttonDown) { 
-                if (!isDown) {
-                    isDown = true;
+                if (buttonDown) {
                     ChangeMenu.StartScene();
                 }
-            }
-            else if (!buttonDown) {
-                isDown = false;
             }
         }
 	}
