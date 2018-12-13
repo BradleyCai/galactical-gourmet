@@ -28,11 +28,7 @@ public class ButtonTrigger : MonoBehaviour {
         buttonDown = OVRInput.GetDown(OVRInput.Button.One) || OVRInput.GetDown(OVRInput.Button.Two) || OVRInput.Get(OVRInput.Button.Three) || OVRInput.Get(OVRInput.Button.Four);
 
 		if(currentScene.name == "StartScene") {
-            if (Input.GetKeyDown(KeyCode.Alpha1)) // start the game
-				ChangeMenu.InstructionScene();
-			else if (Input.GetKeyDown(KeyCode.Alpha2)) // quit the program
-				ChangeMenu.QuitGame();
-
+            /* For Joystick reading */
             if (primaryAxis.y < 0) {
                 if (!isJoyDown) {
                     isJoyDown = true;
@@ -49,35 +45,36 @@ public class ButtonTrigger : MonoBehaviour {
                 isJoyDown = false;
             }
 
+            // Determines which button to highlight
             for (int i = 0; i < 2; i++) {
-                if (i == currButton)
+                if (i == currButton) // highlights button user is on
                     buttons[i].colors = highlight;
-                else
+                else // Button user not on is set back to default color
                     buttons[i].colors = ColorBlock.defaultColorBlock;
             }
 
-            if (currButton == 0 && buttonDown) {
-                ChangeMenu.InstructionScene();
+            if (Input.GetKeyDown(KeyCode.Alpha1) || (currButton == 0 && buttonDown)) {
+                SceneManager.LoadScene("InstructionScene");
             }
-            else if (currButton == 1 && buttonDown) {
-                ChangeMenu.QuitGame();
+            else if (Input.GetKeyDown(KeyCode.Alpha2) || (currButton == 1 && buttonDown)) {
+                #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+                #else
+                Application.Quit();
+                #endif
             }
 
 		}
 
 		else if(currentScene.name == "InstructionScene") {
             if (Input.GetKeyDown(KeyCode.Alpha1) || buttonDown) { 
-                if (buttonDown) {
-                    ChangeMenu.PlayScene();
-                }
+                SceneManager.LoadScene("PlayScene");
             }
 		}
 
         else if(currentScene.name == "GameOverScene") {
             if (Input.GetKeyDown(KeyCode.Alpha1) || buttonDown) { 
-                if (buttonDown) {
-                    ChangeMenu.StartScene();
-                }
+                SceneManager.LoadScene("StartScene");
             }
         }
 	}
