@@ -16,7 +16,12 @@ public class PlayerMoveScaler : MonoBehaviour {
 	void Update () {
         Vector3 handOrt = transform.position - parent.transform.position;
 
-        player.transform.position = (transform.position - handOrt) + (handOrt * gameData.playerSize/5);
+        if (!gameData.isDebugging) {
+            player.transform.position = (transform.position - handOrt) + (handOrt * gameData.playerSize/5);
+        }
+        else {
+            player.transform.position = transform.position + transform.forward;
+        }
         player.transform.rotation = transform.rotation;
 	}
 }
