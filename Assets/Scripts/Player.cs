@@ -19,7 +19,7 @@ public class Player : MonoBehaviour {
 			Key "F10":
 				Toggles debug mode
 		**/
-		if (Input.GetKeyDown(KeyCode.F10)) {
+		if (Input.GetKeyDown(KeyCode.B)) {
             gameData.isDebugging = !gameData.isDebugging;
             mouseLook.enabled = !mouseLook.enabled;
             scoreText.SetActive(!scoreText.activeSelf);
